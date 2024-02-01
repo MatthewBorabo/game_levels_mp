@@ -65,11 +65,6 @@ class Chat{
             this.sendMessage(message);
         });
 
-        Multiplayer.createListener("onMessage",(data)=>{
-            var message = this.parseMessage(data.message);
-            addMessage(message,data.name?data.name:data.id);
-        })
-
         div.append(div2);
         div.append(input);
         div.append(button);

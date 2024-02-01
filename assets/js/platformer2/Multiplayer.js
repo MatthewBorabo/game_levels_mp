@@ -38,9 +38,9 @@ export class Socket{
         this.socket.on(key,func);
     }
 
-    static removeListener(key){
+    static removeListener(key){ //removes all listners on a certain key
         if (typeof key == "string"){return "key is not a string"};
-        this.socket.off(key)
+        this.socket.removeAllListeners(key);
     }
 
     static removeAllListeners(){
