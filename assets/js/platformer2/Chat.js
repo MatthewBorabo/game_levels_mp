@@ -17,7 +17,7 @@ class Chat{
 
     sendMessage(message){
         message = this.parseMessage(message);  
-        Multiplayer.socket.sendData("message",message);
+        Multiplayer.sendData("message",message);
     }
 
     parseMessage(message){
