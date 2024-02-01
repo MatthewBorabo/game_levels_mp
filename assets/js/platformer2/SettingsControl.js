@@ -3,6 +3,7 @@ import LocalStorage from "./LocalStorage.js";
 import GameEnv from "./GameEnv.js";
 import GameControl from "./GameControl.js";
 import Socket from "./Multiplayer.js";
+import Chat from "./Chat.js"
 
 /* Coding Style Notes
  *
@@ -384,6 +385,33 @@ export class SettingsControl extends LocalStorage{
         return div;
     }
 
+
+    get chatButton() {
+        const div = document.createElement("div");
+        div.innerHTML = "Chat: "; // label
+    
+        const button = document.createElement("button"); // button for Multiplayer
+        button.innerText = "open";
+    
+        var ChatClass = new Chat([]);
+        var chatBox =  ChatClass.chatBox;
+        chatBox.style.display = "none";
+        chatBox.style.zIndex = 2;
+        document.getElementById("leaderboard").insertAdjacentElement("afterend",chatBox);
+
+        var isShown = false;
+        button.addEventListener("click", () => {
+            isShown=!isShown;
+            if(isShown){
+                chatBox.style.display = "block";
+            }else{
+                chatBox.style.display = "none";
+            }
+        });
+    
+        div.append(button); // wrap button element in div
+        return div;
+    }
     /**
      * Static method to initialize the game settings controller and add the settings controls to the sidebar.
      * Constructs an HTML table/menu from GameEnv.levels[] and HTML inputs for invert, game speed, and gravity.
@@ -427,6 +455,10 @@ export class SettingsControl extends LocalStorage{
         // Get/Construct HTML button and event update for multiplayer
         var multiplayerButton = settingsControl.multiplayerButton;
         document.getElementById("sidebar").append(multiplayerButton);
+
+        // Get/Construct HTML button and event update for multiplayer
+        var chatButton = settingsControl.chatButton;
+        document.getElementById("sidebar").append(chatButton);
 
 
         // Listener, isOpen, and function for sidebar open and close

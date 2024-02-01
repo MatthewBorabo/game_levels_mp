@@ -17,7 +17,7 @@ class Chat{
 
     sendMessage(message){
         message = this.parseMessage(message);  
-        Multiplayer.sendData("message",message);
+        Multiplayer.socket.sendData("message",message);
     }
 
     parseMessage(message){
@@ -46,12 +46,19 @@ class Chat{
         button.innerText = "Send";
 
         function addMessage(message,name){
+            const div3 = document.createElement("div")
             const para = document.createElement("a");
             para.innerText = name+": "+message;
-            div2.append(para)
+            div3.append(para);
+            div2.append(div3);
         }
 
         button.addEventListener("click",()=>{
+            Multiplayer.removeListener("onMessage")
+            Multiplayer.createListener("onMessage",(data)=>{
+                var message = this.parseMessage(data.message);
+                addMessage(message,data.name?data.name:data.id);
+            })
             var message = input.value;
             message = this.parseMessage(message);
             addMessage(message,"you");
