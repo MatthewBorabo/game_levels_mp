@@ -397,6 +397,9 @@ export class SettingsControl extends LocalStorage{
         var chatBox =  ChatClass.chatBox;
         chatBox.style.display = "none";
         chatBox.style.zIndex = 2;
+        chatBox.style.position = "absolute";
+        chatBox.style.top = "50%";
+        chatBox.style.left = "50%";
         document.getElementById("leaderboard").insertAdjacentElement("afterend",chatBox);
 
         var isShown = false;
