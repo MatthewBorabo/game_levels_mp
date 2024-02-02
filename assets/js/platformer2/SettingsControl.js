@@ -394,21 +394,43 @@ export class SettingsControl extends LocalStorage{
         button.innerText = "open";
     
         var ChatClass = new Chat([]);
-        var chatBox =  ChatClass.chatBox;
-        chatBox.style.display = "none";
-        chatBox.style.zIndex = 2;
-        chatBox.style.position = "absolute";
-        chatBox.style.top = "50%";
-        chatBox.style.left = "50%";
-        document.getElementById("leaderboard").insertAdjacentElement("afterend",chatBox);
+        var chatBoxContainer =  ChatClass.chatBoxContainer;
+        var chatBox = chatBoxContainer.children.namedItem("chatBox");
+        var chatInput = chatBoxContainer.children.namedItem("chatInput");
+        var chatButton = chatBoxContainer.children.namedItem("chatButton");
+        chatBoxContainer.style.display = "none";
+        chatBoxContainer.style.zIndex = 2;
+        chatBoxContainer.style.position = "absolute";
+        chatBoxContainer.style.top = "50%";
+        chatBoxContainer.style.left = "50%";
+        chatBoxContainer.style.width = "50%";
+        chatBoxContainer.style.height = "50%";
+        chatBoxContainer.style.backgroundColor = "white";
+        chatBoxContainer.style.borderRadius = "5%";
+        chatBox.style.position = "relative";
+        chatBox.style.resize = "both";
+        chatBox.style.overflow = "auto";
+        chatBox.style.height = "90%";
+        chatBox.style.width = "100%";
+        chatBox.style.top = "0%";
+        chatInput.style.position = "relative";
+        chatInput.style.bottom = "9fr";
+        chatInput.style.height = "10%"
+        chatInput.style.width = "80%";
+        chatButton.style.position = "relative";
+        chatButton.style.height = "10%";
+        chatButton.style.width = "20%";
+
+
+        document.getElementById("leaderboard").insertAdjacentElement("afterend",chatBoxContainer);
 
         var isShown = false;
         button.addEventListener("click", () => {
             isShown=!isShown;
             if(isShown){
-                chatBox.style.display = "block";
+                chatBoxContainer.style.display = "block";
             }else{
-                chatBox.style.display = "none";
+                chatBoxContainer.style.display = "none";
             }
         });
     

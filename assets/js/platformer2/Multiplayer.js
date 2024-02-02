@@ -24,7 +24,6 @@ export class Socket{
         this.socket.on("id",(id)=>{this.socketId = id});
     }
 
-
     constructor(){throw new Error('Socket is a static class and cannot be instantiated.');}
 
     static sendData(key,value) {
@@ -52,11 +51,8 @@ export class Socket{
         this.shouldBeSynced = !this.shouldBeSynced;
         if(this.shouldBeSynced){
             this.removeAllListeners();
-
-            GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
-        } else{
-            GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
         }
+        GameControl.transitionToLevel(GameEnv.levels[GameEnv.levels.indexOf(GameEnv.currentLevel)]);
         return this.shouldBeSynced;
     }
 }

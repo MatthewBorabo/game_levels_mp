@@ -28,7 +28,7 @@ class Chat{
         return message;
     }
 
-    get chatBox(){
+    get chatBoxContainer(){
         const div = document.createElement("div");
         div.className = ""; //create a class for the chatBox
         div.id = "chatBoxContainer";
@@ -46,9 +46,10 @@ class Chat{
         button.innerText = "Send";
 
         function addMessage(message,name){
-            const div3 = document.createElement("div")
-            const para = document.createElement("a");
-            para.innerText = name+": "+message;
+            const div3 = document.createElement("div");
+            const para = document.createElement("p");
+            para.innerHTML = "<b>"+name+":</b>"+" "+message;
+            para.style.color = "black";
             div3.append(para);
             div2.append(div3);
         }
