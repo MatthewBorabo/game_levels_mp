@@ -24,6 +24,7 @@ export class Socket{
         this.socket.on("id",(id)=>{this.socketId = id});
     }
 
+
     constructor(){throw new Error('Socket is a static class and cannot be instantiated.');}
 
     static sendData(key,value) {
@@ -39,8 +40,8 @@ export class Socket{
     }
 
     static removeListener(key){ //removes all listners on a certain key
-        if (typeof key == "string"){return "key is not a string"};
-        this.socket.removeAllListeners(key);
+        if (typeof key != "string"){return "key is not a string"};
+        this.socket.off(key);
     }
 
     static removeAllListeners(){
