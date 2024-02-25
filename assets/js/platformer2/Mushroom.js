@@ -1,7 +1,7 @@
 import Character from './Character.js';
 import GameEnv from './GameEnv.js';
 import GameControl from './GameControl.js';
-import mushroomSound from './Audio.js';
+import MushroomSound from './Audio3.js';
 
 export class Mushroom extends Character {
     // constructors sets up Character object 
@@ -93,7 +93,7 @@ export class Mushroom extends Character {
                 this.canvas.style.transformOrigin = "bottom"; 
                 this.canvas.style.transform = "scaleY(0)"; 
                 this.speed = 0;
-                mushroomSound.mushroomSound();
+                MushroomSound();
 
                 setTimeout((function() {
                     GameEnv.invincible = false;
